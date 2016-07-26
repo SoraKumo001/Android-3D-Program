@@ -6,7 +6,7 @@
 #include "AndroidApp.h"
 #include "aflOpenGL.h"
 #include "aflInput.h"
-#include "Main.h"
+#include "../Main.h"
 
 //Main _g_main;
 Main* g_main;

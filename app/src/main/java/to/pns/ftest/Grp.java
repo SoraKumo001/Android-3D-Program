@@ -49,6 +49,7 @@ public class Grp extends GLSurfaceView implements Renderer, ThreadAction
 
 	static
 	{
+		System.loadLibrary("c++_shared");
 		System.loadLibrary("Grp");
 	}
 

@@ -3,7 +3,7 @@
 #else
 #include <android/log.h>
 #endif
-
+#include <stdlib.h>
 #include "Effect.h"
 
 using namespace AFL;

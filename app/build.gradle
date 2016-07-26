@@ -1,23 +1,44 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.model.application'
 
-android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.1"
+model {
+    android {
+        compileSdkVersion = 24
+        buildToolsVersion = "24.0.1"
 
-    defaultConfig {
-        applicationId "to.pns.ftest"
-        minSdkVersion 15
-        targetSdkVersion 24
-
+        defaultConfig {
+            applicationId = "to.pns.ftest"
+            minSdkVersion.apiLevel = 18
+            targetSdkVersion.apiLevel = 24
+            versionCode = 1
+            versionName = "1.0"
+        }
+        buildTypes {
+            release {
+                minifyEnabled = false
+                proguardFiles.add(file('proguard-android.txt'))
+            }
+        }
         ndk {
-            moduleName "Grp"
+            moduleName = "Grp"
+            cppFlags.add ("-std=c++11")
+            cppFlags.add("-mfpu=neon")
+            cppFlags.add("-I${file("src/main/jni/include")}".toString())
+            stl = "c++_shared"
+            ldLibs.addAll(["android", "EGL", "GLESv2", "dl", "log"])
+            platformVersion = "19"
         }
     }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+    android.productFlavors {
+        // for detailed abiFilter descriptions, refer to "Supported ABIs" @
+        // https://developer.android.com/ndk/guides/abis.html#sa
+        create("arm7") {
+            ndk.abiFilters.add("armeabi-v7a")
+        }
+        create("x86") {
+            ndk.abiFilters.add("x86")
+        }
+        create("x86-64") {
+            ndk.abiFilters.add("x86_64")
         }
     }
 }
