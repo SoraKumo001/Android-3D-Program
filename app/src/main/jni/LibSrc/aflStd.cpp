@@ -595,8 +595,7 @@ INT String::toInt() const
 }
 FLOAT String::toFloat() const
 {
-	//return (FLOAT)atof(c_str());
-	return strtod(c_str(), NULL);
+	return (FLOAT)atof(c_str());
 }
 void String::toUpper() const
 {

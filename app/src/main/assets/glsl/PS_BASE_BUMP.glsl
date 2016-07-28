@@ -1,4 +1,4 @@
-﻿#include "default.glsli"
+﻿//#include "default.glsli"
 
 precision mediump float;
 
@@ -8,7 +8,7 @@ uniform sampler2D texture1;
 varying vec2 v_texPoint;
 varying vec2 v_texCoord[2];
 varying vec3 v_light;
-
+const float LightPri = 0.5;
 void main()
 {
 	vec4 color = texture2D(texture0,v_texCoord[0]);
